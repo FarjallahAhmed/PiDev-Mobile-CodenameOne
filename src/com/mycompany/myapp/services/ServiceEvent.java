@@ -33,6 +33,7 @@ import java.util.Map;
 public class ServiceEvent {
     
     public ArrayList<Workshop> events;
+    public Map<String,Object> stat;
     public Workshop event;
     public static ServiceEvent instance = null;
     public boolean resultOK;
@@ -278,6 +279,26 @@ public class ServiceEvent {
         
         
         return resultOK;
+    }
+     public Map<String,Object> stat(){
+        
+        String url = Statics.BASE_URL+"/APIEvent/stat";
+        req.setUrl(url);
+        req.setPost(false);
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                try {
+                    JSONParser j = new JSONParser();
+                    Map<String,Object> eventsListJson =  j.parseJSON(new CharArrayReader(new String(req.getResponseData()).toCharArray()));
+                    stat = eventsListJson;
+                    req.removeResponseListener(this);
+                } catch (IOException ex) {
+                }
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return stat;
     }
     
     

@@ -205,10 +205,15 @@ public class CalendarForm extends BaseForm {
         mainContent= BorderLayout.center(mainContent).
                 add(BorderLayout.WEST, circleBox);
                 ShareButton share = new ShareButton();
+                Button stat = new Button("Stat");
                 share.setText("Share Evenet");
+                stat.addActionListener(e->{
+                    BudgetPieChart a = new BudgetPieChart();
+                     a.execute().show();
+                });
                 share.addActionListener(evt->{  
                   
-             signIn();
+            // signIn();
                        
                  final TextArea t = new TextArea("Sharing on Facebook with CodenameOne is a breeze.\n"
                 + "http://www.codenameone.com\n"
@@ -224,6 +229,7 @@ public class CalendarForm extends BaseForm {
         return BorderLayout.center(mainContent).
                 add(BorderLayout.WEST, FlowLayout.encloseCenter(time)).
                 add(BorderLayout.SOUTH,share).
+                add(BorderLayout.SOUTH,stat).
                 add(BorderLayout.EAST, loc);
     }
     
@@ -265,7 +271,7 @@ public class CalendarForm extends BaseForm {
         setToolbar(new Toolbar(true));
     }
 
-    
+    /*
     private static void signIn() {
         FaceBookAccess.setClientId("165825622136612");
         FaceBookAccess.setClientSecret("6084d71d016da592bf82e8dd31838e3a");
@@ -295,6 +301,6 @@ public class CalendarForm extends BaseForm {
             }
         });
     }
-
+*/
     
 }
