@@ -13,6 +13,7 @@ import com.codename1.ui.Toolbar;
 import java.io.IOException;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.io.NetworkEvent;
+import com.mycompany.myapp.gui.CalendarForm;
 import com.mycompany.myapp.gui.ForgetPassword;
 import com.mycompany.myapp.gui.InscriptionUser;
 import com.mycompany.myapp.gui.ProfileFormateurForm;
@@ -71,7 +72,8 @@ public class MyApplication {
     //new ProfileParticipantForm(themeProfile).show();
   //  new ProfileFormateurForm(themeProfile).show();
   // new ForgetPassword(theme).show();
-      new loginUser(theme).show();
+     // new loginUser(theme).show();
+     new CalendarForm(theme).show();
     //  new UserForm().show();
     }
 
