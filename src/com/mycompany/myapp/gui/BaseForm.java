@@ -63,7 +63,8 @@ public class BaseForm extends Form {
      
      //   getToolbar().addCommandToSideMenu("Calendar", calendarImage, e -> new CalendarForm(res).show());
         getToolbar().addCommandToSideMenu("Map", null, e -> {});
-     //   getToolbar().addCommandToSideMenu("Trending", trendingImage, e -> new TrendingForm(res).show());
+        getToolbar().addCommandToSideMenu("Trending", trendingImage, e -> new TrendingForm(res).show());
+        getToolbar().addCommandToSideMenu("Recommended", trendingImage, e -> new recommended(res).show());
         getToolbar().addCommandToSideMenu("Settings", null, e -> {});
         
         // spacer

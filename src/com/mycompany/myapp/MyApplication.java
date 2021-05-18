@@ -18,6 +18,7 @@ import com.mycompany.myapp.gui.ForgetPassword;
 import com.mycompany.myapp.gui.InscriptionUser;
 import com.mycompany.myapp.gui.ProfileFormateurForm;
 import com.mycompany.myapp.gui.ProfileParticipantForm;
+import com.mycompany.myapp.gui.TrendingForm;
 import com.mycompany.myapp.gui.UserForm;
 import com.mycompany.myapp.gui.UserInscription;
 import com.mycompany.myapp.gui.loginUser;
@@ -73,8 +74,9 @@ public class MyApplication {
   //  new ProfileFormateurForm(themeProfile).show();
   // new ForgetPassword(theme).show();
      // new loginUser(theme).show();
-     new CalendarForm(theme).show();
+    // new CalendarForm(theme).show();
     //  new UserForm().show();
+    new TrendingForm(theme).show();
     }
 
     public void stop() {
