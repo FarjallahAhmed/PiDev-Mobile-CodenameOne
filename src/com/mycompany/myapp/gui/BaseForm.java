@@ -44,6 +44,11 @@ public class BaseForm extends Form {
         Image trendingImage = null;
         if(isCurrentTrending()) trendingImage = selection;
         
+        Image panierImage = null;
+        if(isCurrentPanier()) panierImage = selection;
+        Image finaliserImage = null;
+        if(isCurrentFinaliser()) finaliserImage = selection;
+        
         Image calendarImage = null;
         if(isCurrentCalendar()) calendarImage = selection;
         
@@ -64,6 +69,7 @@ public class BaseForm extends Form {
      //   getToolbar().addCommandToSideMenu("Calendar", calendarImage, e -> new CalendarForm(res).show());
         getToolbar().addCommandToSideMenu("Map", null, e -> {});
      //   getToolbar().addCommandToSideMenu("Trending", trendingImage, e -> new TrendingForm(res).show());
+     getToolbar().addCommandToSideMenu("Panier", panierImage, e -> new PanierForm(res).show());
         getToolbar().addCommandToSideMenu("Settings", null, e -> {});
         
         // spacer
@@ -81,7 +87,12 @@ public class BaseForm extends Form {
     protected boolean isCurrentTrending() {
         return false;
     }
-
+    protected boolean isCurrentPanier() {
+        return false;
+    }
+     protected boolean isCurrentFinaliser() {
+        return false;
+    }
     protected boolean isCurrentCalendar() {
         return false;
     }
