@@ -34,6 +34,7 @@ import com.codename1.ui.plaf.Border;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.ImageIO;
 import com.codename1.ui.util.Resources;
+import com.mycompany.myapp.services.ServiceCommande;
 import com.mycompany.myapp.services.ServiceFormations;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -71,6 +72,9 @@ public class detailsformation extends BaseForm implements LocalNotificationCallb
           com.codename1.ui.Button gui_Button_2 = new com.codename1.ui.Button();
           gui_Button_2.setText("passer commande");
         f.addAll(imavu,ta,ta2,ta3,ta4,gui_Button_2);
+        gui_Button_2.addActionListener(l->{
+            ServiceCommande.getInstance().ajoutercommande(h.getId(),1);
+        });
         Container hi= new Container( new BoxLayout(BoxLayout.Y_AXIS));
         
         hi.add(createRankWidget("Ajouter une evaluation ", "Slide"));
