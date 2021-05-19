@@ -5,10 +5,14 @@
  */
 package com.mycompany.myapp.gui;
 
+import com.codename1.io.AccessToken;
+import com.codename1.io.Preferences;
 import com.codename1.io.Storage;
 import com.codename1.social.FacebookConnect;
+import com.codename1.social.GoogleConnect;
 import com.codename1.social.Login;
 import com.codename1.social.LoginCallback;
+import com.codename1.ui.Button;
 import com.codename1.ui.ComboBox;
 import com.codename1.ui.Command;
 import com.codename1.ui.Dialog;
@@ -31,6 +35,8 @@ import com.mycompany.myapp.userSession.UserSession;
 public class loginUser extends Form {
     
     private Resources resT;
+    private Login login;
+    private String tokenPrefix;
     
     public loginUser() {
         this(com.codename1.ui.util.Resources.getGlobalResources());
@@ -56,6 +62,7 @@ public class loginUser extends Form {
     private com.codename1.ui.Button gui_Button_3 = new com.codename1.ui.Button();
     private com.codename1.ui.Button gui_Button_1 = new com.codename1.ui.Button();
     private ComboBox typeAccount = new ComboBox("Participant","Formateur");
+    private Button t = new Button("google");
 
 
 // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
@@ -116,6 +123,7 @@ public class loginUser extends Form {
         
         gui_Container_1.addComponent(gui_Button_2);
         gui_Container_1.addComponent(gui_Button_3);
+        gui_Container_1.addComponent(t);
         gui_Label_1.setUIID("CenterLabel");
         gui_Label_1.setName("Label_1");
         gui_Label_1.setIcon(resourceObjectInstance.getImage("profile_image.png"));
@@ -152,6 +160,61 @@ public class loginUser extends Form {
               
             }
         });
+        
+        
+        t.addActionListener(new ActionListener() {
+            
+            
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                
+                
+                
+                String clientId = "215780774506-dq9ovdnnvppc4clnktbmvhqnmtlui72f.apps.googleusercontent.com";
+                String redirectURI = "https://www.codenameone.com/oauth2callback";                
+                String clientSecret = "JM9RGS3CyalVEMEP9Ia4mNAk";
+                
+                if(clientSecret.length() == 0){
+                    System.err.println("create your own google project follow the guide here:");
+                    System.err.println("http://www.codenameone.com/google-login.html");
+                    return;
+                }
+                
+                Login gc = GoogleConnect.getInstance();
+                gc.setClientId(clientId);
+                gc.setRedirectURI(redirectURI);
+                gc.setClientSecret(clientSecret);
+                login = gc;
+                        gc.setCallback(new LoginCallback() {
+                                    @Override
+                                    public void loginFailed(String errorMessage) {
+                                        System.out.println(errorMessage);  
+                                    }
+
+                                    @Override
+                                    public void loginSuccessful() {
+                                        
+                                        System.out.println("CV");
+                                    }
+    
+                });
+                if(!gc.isUserLoggedIn()){
+                    System.out.println("Makech connecte");
+                    gc.doLogin();
+                   
+                        
+                }else{
+                   
+                    String Test = gc.getAccessToken().getToken();
+                    System.out.println("RAK CONNECTEEEEEEEEE"+Test);
+                }
+                
+               
+
+            }
+                
+                
+        });
     }// </editor-fold>
 
     
@@ -164,7 +227,7 @@ public class loginUser extends Form {
        // new ProfileFormateurForm(resT).show();
        
        
-     
+     /*
         
         if (typeAccount.getSelectedItem().toString()=="Participant")
         {
@@ -220,11 +283,12 @@ public class loginUser extends Form {
                }
         }
 
-
+*/
      
-     /*
+           // facebookLogout();
+     
                 String clientId = "606421700756191";
-                String redirectURI = "http://localhost/";
+                String redirectURI = "http://www.codenameone.com";
                 String clientSecret = "90531fef98fecacd82b2321129ee6093";
                 Login fb = FacebookConnect.getInstance();
                 fb.setClientId(clientId);
@@ -256,6 +320,8 @@ public class loginUser extends Form {
                                 }
   
                 });
+     
+     
                 //trigger the login if not already logged in
                 if(!fb.isUserLoggedIn()){
                     {
@@ -276,23 +342,14 @@ public class loginUser extends Form {
                     Storage.getInstance().writeObject("token", token);
                     
                 }
-*/
+     
+
+    
+
+
     }
     
-    private void facebookLogout() {
-        String clientId = "606421700756191";
-                String redirectURI = "http://localhost/";
-                String clientSecret = "90531fef98fecacd82b2321129ee6093";
-        Login fb = FacebookConnect.getInstance();
-        fb.setClientId(clientId);
-        fb.setRedirectURI(redirectURI);
-        fb.setClientSecret(clientSecret);
-
-        //trigger the login if not already logged in
-        fb.doLogout();
-        Storage.getInstance().writeObject("token", "");
-        
-    }
+    
     
 
     
